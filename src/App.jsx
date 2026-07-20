@@ -16,12 +16,14 @@ import {
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import WhatsAppButton from './components/WhatsAppButton'
+import ScrollToTop from './components/ScrollToTop'
 import { ThemeProvider } from './context/ThemeContext'
 
 const App = () => {
   return (
     <ThemeProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
