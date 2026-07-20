@@ -1,0 +1,13 @@
+// Route-level pages
+export { default as Home } from './Home'
+export { default as Fleet } from './Fleet'
+export { default as CarDetail } from './CarDetail'
+export { default as Apartments } from './Apartments'
+export { default as ApartmentDetail } from './ApartmentDetail'
+export { default as Services } from './Services'
+export { default as ServiceDetail } from './ServiceDetail'
+export { default as Locations } from './Locations'
+export { default as LocationDetail } from './LocationDetail'
+export { default as About } from './About'
+export { default as Contact } from './Contact'
+export { default as FAQ } from './FAQ'
