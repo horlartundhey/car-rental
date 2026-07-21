@@ -1,13 +1,19 @@
-import { Gauge, Menu, X } from 'lucide-react'
-import { useEffect, useState } from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { ChevronDown, Gauge, Menu, X } from 'lucide-react'
+import { useEffect, useRef, useState } from 'react'
+import { Link, NavLink, useLocation } from 'react-router-dom'
 import WhatsAppButton from './WhatsAppButton'
 import ThemeToggle from './ThemeToggle'
 import { siteSettings } from '../config/settings'
 
 const navLinks = [
   { name: 'Home', path: '/' },
-  { name: 'Fleet', path: '/fleet' },
+  {
+    name: 'Cars',
+    dropdown: [
+      { name: 'Rent a Car', path: '/fleet' },
+      { name: 'Buy a Car', path: '/buy-cars' },
+    ],
+  },
   { name: 'Apartments', path: '/apartments' },
   { name: 'Services', path: '/services' },
   { name: 'About', path: '/about' },
@@ -17,6 +23,10 @@ const navLinks = [
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+  const [carsMenuOpen, setCarsMenuOpen] = useState(false)
+  const [mobileCarsOpen, setMobileCarsOpen] = useState(false)
+  const carsMenuRef = useRef(null)
+  const { pathname } = useLocation()
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50)
@@ -32,10 +42,26 @@ const Navbar = () => {
     }
   }, [isOpen])
 
+  useEffect(() => {
+    if (!isOpen) setMobileCarsOpen(false)
+  }, [isOpen])
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (carsMenuRef.current && !carsMenuRef.current.contains(e.target)) {
+        setCarsMenuOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
   const desktopLinkClass = ({ isActive }) =>
     `text-sm whitespace-nowrap transition-colors duration-200 ${
       isActive ? 'text-gold font-medium' : 'text-foreground/70 hover:text-gold'
     }`
+
+  const isCarsSectionActive = pathname.startsWith('/fleet') || pathname.startsWith('/buy-cars')
 
   const mobileLinkClass = ({ isActive }) =>
     `text-2xl font-display py-4 border-b border-border transition-colors duration-200 ${
@@ -61,15 +87,55 @@ const Navbar = () => {
             </Link>
 
             <div className="hidden md:flex items-center gap-5 shrink-0">
-              {navLinks.map((item) => (
-                <NavLink
-                  key={item.path}
-                  to={item.path}
-                  className={desktopLinkClass}
-                >
-                  {item.name}
-                </NavLink>
-              ))}
+              {navLinks.map((item) =>
+                item.dropdown ? (
+                  <div key={item.name} className="relative" ref={carsMenuRef}>
+                    <button
+                      onClick={() => setCarsMenuOpen((v) => !v)}
+                      aria-haspopup="true"
+                      aria-expanded={carsMenuOpen}
+                      className={`centered gap-1 text-sm whitespace-nowrap transition-colors duration-200 ${
+                        isCarsSectionActive
+                          ? 'text-gold font-medium'
+                          : 'text-foreground/70 hover:text-gold'
+                      }`}
+                    >
+                      {item.name}
+                      <ChevronDown
+                        size={14}
+                        className={`transition-transform duration-200 ${
+                          carsMenuOpen ? 'rotate-180' : ''
+                        }`}
+                      />
+                    </button>
+
+                    {carsMenuOpen && (
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-44 bg-surface border border-border rounded-xl shadow-lg shadow-black/20 py-2 overflow-hidden">
+                        {item.dropdown.map((sub) => (
+                          <NavLink
+                            key={sub.path}
+                            to={sub.path}
+                            onClick={() => setCarsMenuOpen(false)}
+                            className={({ isActive }) =>
+                              `block px-4 py-2.5 text-sm whitespace-nowrap transition-colors duration-200 ${
+                                isActive
+                                  ? 'text-gold bg-gold/5'
+                                  : 'text-foreground/80 hover:text-gold hover:bg-gold/5'
+                              }`
+                            }
+                          >
+                            {sub.name}
+                          </NavLink>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                ) : (
+                  <NavLink key={item.path} to={item.path} className={desktopLinkClass}>
+                    {item.name}
+                  </NavLink>
+                )
+              )}
             </div>
 
             <div className="hidden md:flex items-center gap-2 shrink-0">
@@ -121,16 +187,54 @@ const Navbar = () => {
         </div>
 
         <nav className="flex-1 flex flex-col px-6 overflow-y-auto">
-          {navLinks.map((item) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              className={mobileLinkClass}
-              onClick={() => setIsOpen(false)}
-            >
-              {item.name}
-            </NavLink>
-          ))}
+          {navLinks.map((item) =>
+            item.dropdown ? (
+              <div key={item.name} className="border-b border-border">
+                <button
+                  onClick={() => setMobileCarsOpen((v) => !v)}
+                  aria-expanded={mobileCarsOpen}
+                  className={`w-full flex items-center justify-between text-2xl font-display py-4 transition-colors duration-200 ${
+                    isCarsSectionActive ? 'text-gold' : 'text-foreground hover:text-gold'
+                  }`}
+                >
+                  {item.name}
+                  <ChevronDown
+                    size={22}
+                    className={`transition-transform duration-200 ${
+                      mobileCarsOpen ? 'rotate-180' : ''
+                    }`}
+                  />
+                </button>
+                {mobileCarsOpen && (
+                  <div className="pb-4 flex flex-col gap-1">
+                    {item.dropdown.map((sub) => (
+                      <NavLink
+                        key={sub.path}
+                        to={sub.path}
+                        className={({ isActive }) =>
+                          `text-lg py-2 pl-1 transition-colors duration-200 ${
+                            isActive ? 'text-gold' : 'text-foreground-muted hover:text-gold'
+                          }`
+                        }
+                        onClick={() => setIsOpen(false)}
+                      >
+                        {sub.name}
+                      </NavLink>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                className={mobileLinkClass}
+                onClick={() => setIsOpen(false)}
+              >
+                {item.name}
+              </NavLink>
+            )
+          )}
         </nav>
 
         <div className="px-6 pb-8 pt-4 shrink-0">

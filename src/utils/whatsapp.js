@@ -50,6 +50,26 @@ export function generateWhatsAppApartmentBookingLink(apartment, { nights } = {})
   return `https://wa.me/${toWhatsAppDigits(siteSettings.whatsappNumber)}?text=${encodedMessage}`
 }
 
+// Builds a wa.me link with a pre-filled, editable purchase inquiry for a car-for-sale listing.
+export function generateWhatsAppPurchaseInquiryLink(car) {
+  const carUrl =
+    typeof window !== 'undefined' ? `${window.location.origin}/buy-cars/${car.id}` : ''
+
+  const lines = [
+    'Hello, I would like to inquire about buying the following vehicle:',
+    '',
+    `Vehicle: ${car.year} ${car.brand} ${car.name}`,
+    `Price: ${formatNaira(car.price)}`,
+    `Condition: ${car.condition}`,
+  ]
+
+  if (carUrl) lines.push('', `Vehicle page: ${carUrl}`)
+  lines.push('', 'Is this vehicle still available? Please let me know. Thank you.')
+
+  const encodedMessage = encodeURIComponent(lines.join('\n'))
+  return `https://wa.me/${toWhatsAppDigits(siteSettings.whatsappNumber)}?text=${encodedMessage}`
+}
+
 // General-purpose WhatsApp contact link (nav, footer, sticky button) not tied to a
 // specific vehicle or apartment.
 export function generateWhatsAppContactLink(

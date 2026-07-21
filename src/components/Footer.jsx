@@ -7,7 +7,8 @@ import { locations } from '../assets/locations'
 
 const navLinks = [
   { name: 'Home', path: '/' },
-  { name: 'Fleet', path: '/fleet' },
+  { name: 'Rent a Car', path: '/fleet' },
+  { name: 'Buy a Car', path: '/buy-cars' },
   { name: 'Apartments', path: '/apartments' },
   { name: 'Services', path: '/services' },
   { name: 'About', path: '/about' },

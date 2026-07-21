@@ -2,6 +2,8 @@
 export { default as Home } from './Home'
 export { default as Fleet } from './Fleet'
 export { default as CarDetail } from './CarDetail'
+export { default as BuyCars } from './BuyCars'
+export { default as CarForSaleDetail } from './CarForSaleDetail'
 export { default as Apartments } from './Apartments'
 export { default as ApartmentDetail } from './ApartmentDetail'
 export { default as Services } from './Services'

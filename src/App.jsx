@@ -3,6 +3,8 @@ import {
   Home,
   Fleet,
   CarDetail,
+  BuyCars,
+  CarForSaleDetail,
   Apartments,
   ApartmentDetail,
   Services,
@@ -29,6 +31,8 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/fleet" element={<Fleet />} />
           <Route path="/fleet/:id" element={<CarDetail />} />
+          <Route path="/buy-cars" element={<BuyCars />} />
+          <Route path="/buy-cars/:id" element={<CarForSaleDetail />} />
           <Route path="/apartments" element={<Apartments />} />
           <Route path="/apartments/:id" element={<ApartmentDetail />} />
           <Route path="/services" element={<Services />} />
