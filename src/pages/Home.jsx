@@ -8,18 +8,31 @@ import {
   HowItWorks,
   FinalCTA,
 } from '../sections'
+import Reveal from '../components/Reveal'
 
 const Home = () => {
   return (
     <div className="min-h-screen">
       <HeroSection />
-      <FeaturedFleet />
+      <Reveal>
+        <FeaturedFleet />
+      </Reveal>
       <VideoSection />
-      <WhyChooseUs />
-      <ApartmentsTeaser />
-      <ServicesTeaser />
-      <HowItWorks />
-      <FinalCTA />
+      <Reveal>
+        <WhyChooseUs />
+      </Reveal>
+      <Reveal>
+        <ApartmentsTeaser />
+      </Reveal>
+      <Reveal>
+        <ServicesTeaser />
+      </Reveal>
+      <Reveal>
+        <HowItWorks />
+      </Reveal>
+      <Reveal>
+        <FinalCTA />
+      </Reveal>
     </div>
   )
 }

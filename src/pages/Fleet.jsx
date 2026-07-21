@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router-dom'
 import { cars } from '../assets/assets'
 import VehicleCard from '../components/VehicleCard'
 import FleetFilters from '../components/FleetFilters'
+import Reveal from '../components/Reveal'
 
 const Fleet = () => {
   const [searchParams] = useSearchParams()
@@ -31,11 +32,11 @@ const Fleet = () => {
         </div>
 
         {filteredCars.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Reveal className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredCars.map((car) => (
               <VehicleCard key={car.id} vehicle={car} />
             ))}
-          </div>
+          </Reveal>
         ) : (
           <div className="text-center py-24">
             <p className="text-foreground-muted font-display text-xl mb-2">

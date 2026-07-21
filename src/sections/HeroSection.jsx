@@ -28,7 +28,7 @@ const HeroSection = () => {
         <div className="flex flex-wrap items-center gap-4 mt-10">
           <Link
             to="/fleet"
-            className="centered gap-2 bg-gold text-charcoal font-display px-7 py-3.5 rounded-full hover:-translate-y-0.5 transition-transform duration-200"
+            className="centered gap-2 bg-gold text-charcoal font-display px-7 py-3.5 rounded-full hover:-translate-y-0.5 active:scale-95 transition-transform duration-200"
           >
             Explore Our Fleet <ArrowRight size={18} />
           </Link>

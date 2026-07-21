@@ -110,7 +110,7 @@ const Navbar = () => {
                     </button>
 
                     {carsMenuOpen && (
-                      <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-44 bg-surface border border-border rounded-xl shadow-lg shadow-black/20 py-2 overflow-hidden">
+                      <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-36 bg-surface border border-border rounded-xl shadow-lg shadow-black/20 py-2 overflow-hidden">
                         {item.dropdown.map((sub) => (
                           <NavLink
                             key={sub.path}
@@ -147,7 +147,7 @@ const Navbar = () => {
               />
               <Link
                 to="/fleet"
-                className="font-display text-sm bg-gold text-charcoal px-5 py-2.5 rounded-full hover:-translate-y-0.5 transition-transform duration-200 whitespace-nowrap"
+                className="font-display text-sm bg-gold text-charcoal px-5 py-2.5 rounded-full hover:-translate-y-0.5 active:scale-95 transition-transform duration-200 whitespace-nowrap"
               >
                 Rent a Car
               </Link>

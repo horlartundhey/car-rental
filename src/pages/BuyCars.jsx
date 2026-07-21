@@ -1,5 +1,6 @@
 import { carsForSale } from '../assets/carsForSale'
 import CarForSaleCard from '../components/CarForSaleCard'
+import Reveal from '../components/Reveal'
 
 const BuyCars = () => {
   return (
@@ -16,11 +17,11 @@ const BuyCars = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Reveal className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {carsForSale.map((car) => (
             <CarForSaleCard key={car.id} car={car} />
           ))}
-        </div>
+        </Reveal>
       </div>
     </div>
   )

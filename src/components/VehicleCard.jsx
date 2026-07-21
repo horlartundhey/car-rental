@@ -45,7 +45,7 @@ const VehicleCard = ({ vehicle }) => {
           </div>
           <Link
             to={`/fleet/${id}`}
-            className="text-sm font-medium text-charcoal bg-gold px-4 py-2 rounded-full hover:-translate-y-0.5 transition-transform duration-200"
+            className="text-sm font-medium text-charcoal bg-gold px-4 py-2 rounded-full hover:-translate-y-0.5 active:scale-95 transition-transform duration-200"
           >
             View Vehicle
           </Link>

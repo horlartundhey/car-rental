@@ -116,7 +116,7 @@ const CarForSaleDetail = () => {
             <WhatsAppButton
               href={inquiryLink}
               label="Inquire on WhatsApp"
-              className="justify-center w-full bg-gold text-charcoal font-display px-7 py-4 rounded-full mt-10 hover:-translate-y-0.5 transition-transform duration-200"
+              className="justify-center w-full bg-gold text-charcoal font-display px-7 py-4 rounded-full mt-10 hover:-translate-y-0.5 active:scale-95 transition-transform duration-200"
             />
           </div>
         </div>

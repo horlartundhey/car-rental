@@ -1,5 +1,6 @@
 import { apartments } from '../assets/apartments'
 import ApartmentCard from '../components/ApartmentCard'
+import Reveal from '../components/Reveal'
 
 const Apartments = () => {
   return (
@@ -16,11 +17,11 @@ const Apartments = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Reveal className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {apartments.map((apartment) => (
             <ApartmentCard key={apartment.id} apartment={apartment} />
           ))}
-        </div>
+        </Reveal>
       </div>
     </div>
   )

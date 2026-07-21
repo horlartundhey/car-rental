@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { faqs } from '../assets/faqs'
 import WhatsAppButton from '../components/WhatsAppButton'
+import Reveal from '../components/Reveal'
 
 const FAQ = () => {
   const [openId, setOpenId] = useState(faqs[0]?.id ?? null)
@@ -16,7 +17,7 @@ const FAQ = () => {
           </h1>
         </div>
 
-        <div className="space-y-3">
+        <Reveal className="space-y-3">
           {faqs.map((faq) => {
             const isOpen = openId === faq.id
             return (
@@ -43,7 +44,7 @@ const FAQ = () => {
               </div>
             )
           })}
-        </div>
+        </Reveal>
 
         <div className="mt-14 bg-surface border border-border rounded-2xl p-6 text-center">
           <p className="text-foreground font-display mb-1">Still have a question?</p>

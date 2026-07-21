@@ -1,5 +1,6 @@
 import { services } from '../assets/services'
 import ServiceCard from '../components/ServiceCard'
+import Reveal from '../components/Reveal'
 
 const Services = () => {
   return (
@@ -16,11 +17,11 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Reveal className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service) => (
             <ServiceCard key={service.slug} service={service} />
           ))}
-        </div>
+        </Reveal>
       </div>
     </div>
   )

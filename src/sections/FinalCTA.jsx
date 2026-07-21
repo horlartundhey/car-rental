@@ -12,7 +12,7 @@ const FinalCTA = () => {
         </p>
         <Link
           to="/fleet"
-          className="centered gap-2 bg-gold text-charcoal font-display px-8 py-3.5 rounded-full mt-8 hover:-translate-y-0.5 transition-transform duration-200 w-fit mx-auto"
+          className="centered gap-2 bg-gold text-charcoal font-display px-8 py-3.5 rounded-full mt-8 hover:-translate-y-0.5 active:scale-95 transition-transform duration-200 w-fit mx-auto"
         >
           Start Your Booking <ArrowRight size={18} />
         </Link>

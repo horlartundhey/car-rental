@@ -42,7 +42,7 @@ const ApartmentsTeaser = () => {
             </p>
             <Link
               to="/apartments"
-              className="centered gap-2 bg-gold text-charcoal font-display px-6 py-3 rounded-full hover:-translate-y-0.5 transition-transform duration-200"
+              className="centered gap-2 bg-gold text-charcoal font-display px-6 py-3 rounded-full hover:-translate-y-0.5 active:scale-95 transition-transform duration-200"
             >
               Explore Apartments <ArrowRight size={16} />
             </Link>

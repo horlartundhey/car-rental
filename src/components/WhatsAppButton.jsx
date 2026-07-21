@@ -12,7 +12,7 @@ const WhatsAppButton = ({ href, label = 'Book on WhatsApp', iconOnly = false, cl
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className={`centered gap-2 ${className}`}
+      className={`${iconOnly ? 'center-item' : 'centered gap-2'} active:scale-95 transition-transform duration-200 ${className}`}
     >
       <MessageCircle size={iconOnly ? 22 : 18} />
       {!iconOnly && <span>{label}</span>}

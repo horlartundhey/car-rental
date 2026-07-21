@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { MapPin, ArrowRight } from 'lucide-react'
 import { locations } from '../assets/locations'
+import Reveal from '../components/Reveal'
 
 const Locations = () => {
   return (
@@ -17,7 +18,7 @@ const Locations = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <Reveal className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {locations.map((location) => (
             <Link
               key={location.slug}
@@ -36,7 +37,7 @@ const Locations = () => {
               </span>
             </Link>
           ))}
-        </div>
+        </Reveal>
       </div>
     </div>
   )

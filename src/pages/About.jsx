@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, Car, Home as HomeIcon, ShieldCheck, Clock } from 'lucide-react'
 import heroImage from '../assets/hero.jpg'
 import { siteSettings } from '../config/settings'
+import Reveal from '../components/Reveal'
 
 const pillars = [
   {
@@ -46,7 +47,7 @@ const About = () => {
         </div>
       </section>
 
-      <div className="max-w-4xl mx-auto px-6 py-16 md:py-20">
+      <Reveal className="max-w-4xl mx-auto px-6 py-16 md:py-20" as="div">
         <h2 className="font-display text-2xl md:text-3xl text-foreground mb-5">What We Do</h2>
         <p className="text-foreground-muted leading-relaxed">
           {siteSettings.businessName} started as a car rental service in Lagos and grew into
@@ -85,12 +86,12 @@ const About = () => {
         <div className="mt-14 text-center">
           <Link
             to="/fleet"
-            className="centered gap-2 bg-gold text-charcoal font-display px-7 py-3.5 rounded-full hover:-translate-y-0.5 transition-transform duration-200 w-fit mx-auto"
+            className="centered gap-2 bg-gold text-charcoal font-display px-7 py-3.5 rounded-full hover:-translate-y-0.5 active:scale-95 transition-transform duration-200 w-fit mx-auto"
           >
             Explore Our Fleet <ArrowRight size={18} />
           </Link>
         </div>
-      </div>
+      </Reveal>
     </div>
   )
 }

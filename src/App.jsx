@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { AnimatePresence, motion } from 'motion/react'
 import {
   Home,
   Fleet,
@@ -21,13 +22,19 @@ import WhatsAppButton from './components/WhatsAppButton'
 import ScrollToTop from './components/ScrollToTop'
 import { ThemeProvider } from './context/ThemeContext'
 
-const App = () => {
+const AnimatedRoutes = () => {
+  const location = useLocation()
+
   return (
-    <ThemeProvider>
-      <BrowserRouter>
-        <ScrollToTop />
-        <Navbar />
-        <Routes>
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={location.pathname}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.15, ease: 'easeInOut' }}
+      >
+        <Routes location={location}>
           <Route path="/" element={<Home />} />
           <Route path="/fleet" element={<Fleet />} />
           <Route path="/fleet/:id" element={<CarDetail />} />
@@ -43,6 +50,18 @@ const App = () => {
           <Route path="/contact" element={<Contact />} />
           <Route path="/faq" element={<FAQ />} />
         </Routes>
+      </motion.div>
+    </AnimatePresence>
+  )
+}
+
+const App = () => {
+  return (
+    <ThemeProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Navbar />
+        <AnimatedRoutes />
         <Footer />
         <WhatsAppButton
           iconOnly

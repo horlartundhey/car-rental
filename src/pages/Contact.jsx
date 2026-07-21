@@ -138,7 +138,7 @@ const Contact = () => {
             />
             <button
               type="submit"
-              className="bg-gold text-charcoal font-display px-7 py-3.5 rounded-full hover:-translate-y-0.5 transition-transform duration-200"
+              className="bg-gold text-charcoal font-display px-7 py-3.5 rounded-full hover:-translate-y-0.5 active:scale-95 transition-transform duration-200"
             >
               Send via WhatsApp
             </button>
